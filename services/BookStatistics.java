@@ -42,6 +42,10 @@ public class BookStatistics implements Visitor {
             {
                 numberOfTables_++;
             }
+            else if (element instanceof Section)
+            {
+                ((Section)element).accept(this);
+            }
         }
     }
 

@@ -67,9 +67,9 @@ public class Paragraph extends Element implements Visitee {
         visitor.visitParagraph(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) {
-        throw new UnsupportedOperationException();
-    }
+//    @Override
+//    public void accept(BookStatistics bookStatistics) {
+//        throw new UnsupportedOperationException();
+//    }
 
 }

@@ -129,9 +129,9 @@ public class Section extends Element implements Visitee {
         visitor.visitSection(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) {
-        bookStatistics.visitSection(this);
-    }
+//    @Override
+//    public void accept(BookStatistics bookStatistics) {
+//        bookStatistics.visitSection(this);
+//    }
 
 }

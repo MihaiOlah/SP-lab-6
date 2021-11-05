@@ -108,10 +108,10 @@ public class Image extends Element implements Picture, Visitee {
         visitor.visitImage(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) {
-        throw new UnsupportedOperationException();
-    }
+//    @Override
+//    public void accept(BookStatistics bookStatistics) {
+//        throw new UnsupportedOperationException();
+//    }
 
 
 }

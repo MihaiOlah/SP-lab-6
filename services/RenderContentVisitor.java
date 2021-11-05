@@ -54,6 +54,10 @@ public class RenderContentVisitor implements Visitor {
             {
                 visitTable((Table)element);
             }
+            else if (element instanceof Section)
+            {
+                ((Section)element).accept(this);
+            }
             else
             {
                 System.out.print("Element type unknown");

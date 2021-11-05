@@ -95,6 +95,6 @@ public class Book extends Section {
         visitor.visitSection(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) { bookStatistics.visitBook(this); }
+//    @Override
+//    public void accept(BookStatistics bookStatistics) { bookStatistics.visitBook(this); }
 }

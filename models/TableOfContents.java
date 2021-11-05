@@ -42,8 +42,8 @@ public class TableOfContents extends Element implements Visitee {
         visitor.visitTableOfContents(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) {
-        throw new UnsupportedOperationException();
-    }
+//    @Override
+//    public void accept(BookStatistics bookStatistics) {
+//        throw new UnsupportedOperationException();
+//    }
 }

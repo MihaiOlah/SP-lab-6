@@ -42,8 +42,8 @@ public class Table extends Element implements Visitee {
         visitor.visitTable(this);
     }
 
-    @Override
-    public void accept(BookStatistics bookStatistics) {
-        throw new UnsupportedOperationException();
-    }
+//        @Override
+//        public void accept(BookStatistics bookStatistics) {
+//            throw new UnsupportedOperationException();
+//        }
 }
