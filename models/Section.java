@@ -1,5 +1,7 @@
 package models;
 
+import services.BookStatistics;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -81,29 +83,6 @@ public class Section extends Element implements Visitee {
     }
 
     @Override
-    public String toString()
-    {
-        StringBuilder content = new StringBuilder();
-
-        content.append("Title: " + title_ + "\n");
-
-        for (Element element : content_)
-        {
-            content.append(element.toString());
-            content.append('\n');
-        }
-
-        return content.toString();
-    }
-
-
-    @Override
-    public void print()
-    {
-        System.out.print(this);
-    }
-
-    @Override
     public boolean add(Element element)
     {
         if (!element.getParent())
@@ -149,4 +128,10 @@ public class Section extends Element implements Visitee {
     public void accept(Visitor visitor) {
         visitor.visitSection(this);
     }
+
+    @Override
+    public void accept(BookStatistics bookStatistics) {
+        bookStatistics.visitSection(this);
+    }
+
 }

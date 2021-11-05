@@ -1,5 +1,7 @@
 package models;
 
+import services.BookStatistics;
+
 import java.util.Objects;
 
 public class Table extends Element implements Visitee {
@@ -15,17 +17,7 @@ public class Table extends Element implements Visitee {
         title_ = table.title_;
     }
 
-    @Override
-    public String toString()
-    {
-        return title_;
-    }
-
-    @Override
-    public void print()
-    {
-        System.out.print(this);
-    }
+    public String getTitle() { return title_; }
 
     @Override
     public boolean add(Element element)
@@ -48,5 +40,10 @@ public class Table extends Element implements Visitee {
     @Override
     public void accept(Visitor visitor) {
         visitor.visitTable(this);
+    }
+
+    @Override
+    public void accept(BookStatistics bookStatistics) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,7 +1,6 @@
 package services;
 
 import models.Context;
-import services.AlignStrategy;
 
 public class AlignRight implements AlignStrategy {
     public String render(String paragraph, Context context)
@@ -11,7 +10,7 @@ public class AlignRight implements AlignStrategy {
         int currentLineLength;
 
         currentLineLength = 0;
-        alignedContent.append("\t\t");
+        alignedContent.append("\t\t\t\t\t\t\t\t\t\t\t\t");
          for (int i = 0; i < paragraph.length(); i++)
         {
             alignedContent.append(paragraph.charAt(i));
@@ -20,7 +19,7 @@ public class AlignRight implements AlignStrategy {
             if (width == currentLineLength)
             {
                 currentLineLength = 0;
-                alignedContent.append("\n\t\t");
+                alignedContent.append("\n\t\t\t\t\t\t\t\t\t\t\t\t");
             }
         }
 

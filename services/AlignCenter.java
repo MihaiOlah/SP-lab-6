@@ -11,7 +11,7 @@ public class AlignCenter implements AlignStrategy {
         int currentLineLength;
 
         currentLineLength = 0;
-        alignedContent.append('\t');
+        alignedContent.append("\t\t\t\t\t\t");
         for (int i = 0; i < paragraph.length(); i++)
         {
             alignedContent.append(paragraph.charAt(i));
@@ -20,7 +20,7 @@ public class AlignCenter implements AlignStrategy {
             if (width == currentLineLength)
             {
                 currentLineLength = 0;
-                alignedContent.append("\n\t");
+                alignedContent.append("\n\t\t\t\t\t\t");
             }
         }
 

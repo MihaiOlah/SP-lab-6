@@ -1,18 +1,18 @@
 package models;
 
-import services.AlignLeft;
 import services.AlignStrategy;
+import services.BookStatistics;
 
 import java.util.Objects;
 
 public class Paragraph extends Element implements Visitee {
     private String text_;
-    private AlignStrategy alignStrategy_;
+    private ParagraphAlignment align_;
 
     public Paragraph(String text)
     {
         text_ = Objects.requireNonNullElse(text, "");
-        alignStrategy_ = new AlignLeft();
+        align_ = ParagraphAlignment.LEFT;
     }
 
     public Paragraph(Paragraph paragraph)
@@ -20,9 +20,16 @@ public class Paragraph extends Element implements Visitee {
         text_ = paragraph.text_;
     }
 
-    public void setAlignStrategy(AlignStrategy alignStrategy)
+    public void setAlignStrategy(ParagraphAlignment alignStrategy) throws Exception
     {
-        alignStrategy_ = alignStrategy;
+        if (alignStrategy == null)
+        {
+            throw new Exception("Alignment cannot be null");
+        }
+        else
+        {
+            align_ = alignStrategy;
+        }
     }
 
     public String getText()
@@ -30,21 +37,11 @@ public class Paragraph extends Element implements Visitee {
         return text_;
     }
 
+    public ParagraphAlignment getAlignStrategy() { return align_; }
+
     public void setText(String text)
     {
         text_ = text;
-    }
-
-    @Override
-    public String toString()
-    {
-        return alignStrategy_.render("Paragraph: " + text_, new Context(50));
-    }
-
-    @Override
-    public void print()
-    {
-        System.out.print(this);
     }
 
     @Override
@@ -69,4 +66,10 @@ public class Paragraph extends Element implements Visitee {
     public void accept(Visitor visitor) {
         visitor.visitParagraph(this);
     }
+
+    @Override
+    public void accept(BookStatistics bookStatistics) {
+        throw new UnsupportedOperationException();
+    }
+
 }

@@ -1,7 +1,5 @@
 package services;
 
-import services.ImageLoader;
-
 public class ImageLoaderFactory {
     public ImageLoaderFactory()
     {
@@ -14,13 +12,13 @@ public class ImageLoaderFactory {
             return null;
         }
 
-        if (type.equalsIgnoreCase("jpg"))
+        if (type.endsWith("jpg"))
         {
             return new JPGImageLoader();
         }
-        else if(type.equalsIgnoreCase("bmp") || type.equalsIgnoreCase("dib"))
+        else if(type.endsWith("bmp") || type.endsWith("dib"))
         {
-            return new JPGImageLoader();
+            return new BMPImageLoader();
         }
         else
         {

@@ -1,27 +1,28 @@
 package models;
 
+import services.BookStatistics;
 import services.ImageLoader;
 import services.ImageLoaderFactory;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Image extends Element implements Picture, Visitee {
     private final String url_;
-    private final ImageLoader content_;
+    private final BufferedImage content_;
 
     public Image(String url)
     {
         url_ = Objects.requireNonNullElse(url, "");
 
-        if (url_.toLowerCase().endsWith(".jpg"))
+        ImageLoader imageLoader = (new ImageLoaderFactory()).create(url);
+
+        if (imageLoader != null)
         {
-            content_ = (new ImageLoaderFactory()).create("jpg");
-        }
-        else if(url_.toLowerCase().endsWith("bmp") || url_.toLowerCase().endsWith("dib"))
-        {
-            content_ = (new ImageLoaderFactory()).create("bmp");
+            content_ = imageLoader.load(url_);
         }
         else
         {
@@ -41,12 +42,8 @@ public class Image extends Element implements Picture, Visitee {
         }
     }
 
-    public void PrintImage()
-    {
 
-    }
-
-    public ImageLoader getContent()
+    public BufferedImage getContent()
     {
         return content_;
     }
@@ -63,27 +60,30 @@ public class Image extends Element implements Picture, Visitee {
         return new Dimension();
     }
 
-    public ImageLoader content()
+    public BufferedImage content()
     {
         return content_;
     }
 
     public void display()
     {
-        content_.print(url_);
+        if (content_ != null)
+        {
+            JLabel picLabel = new JLabel(new ImageIcon(content_));
+            JPanel jPanel = new JPanel();
+            jPanel.add(picLabel);
+            JFrame f = new JFrame();
+            f.setSize(new Dimension(content_.getWidth(), content_.getHeight()));
+            f.add(jPanel);
+            f.setVisible(true);
+        }
+        else
+        {
+            System.out.println("Something went wrong");
+        }
     }
 
-    @Override
-    public String toString()
-    {
-        return "Image with name: " + url_;
-    }
-
-    @Override
-    public void print()
-    {
-        System.out.print(this);
-    }
+    public String getUrl() { return url_; }
 
     @Override
     public boolean add(Element element)
@@ -106,6 +106,11 @@ public class Image extends Element implements Picture, Visitee {
     @Override
     public void accept(Visitor visitor) {
         visitor.visitImage(this);
+    }
+
+    @Override
+    public void accept(BookStatistics bookStatistics) {
+        throw new UnsupportedOperationException();
     }
 
 

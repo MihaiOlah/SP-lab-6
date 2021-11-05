@@ -1,6 +1,4 @@
 package services;
-
-import services.AlignStrategy;
 import models.Context;
 
 public class AlignLeft implements AlignStrategy {

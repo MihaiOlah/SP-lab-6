@@ -1,5 +1,7 @@
 import models.*;
-import services.ImageProxy;
+import models.ImageProxy;
+import services.BookStatistics;
+import services.RenderContentVisitor;
 
 public class Lab6 {
     public static void main(String[] args) throws Exception {
@@ -18,5 +20,9 @@ public class Lab6 {
         cap1.add(new Table("Table 1"));
 
         cap1.accept(new RenderContentVisitor());
+
+        BookStatistics stats = new BookStatistics();
+        cap1.accept(stats);
+        stats.printStatistics();
     }
 }

@@ -1,10 +1,10 @@
 package models;
 
-import services.ImageLoader;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public interface Picture {
     String url();
     Dimension dim();
-    ImageLoader content();
+    BufferedImage content();
 }

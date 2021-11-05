@@ -1,5 +1,7 @@
 package models;
 
+import services.BookStatistics;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,22 +47,11 @@ public class Book extends Section {
         return authors_.remove(author);
     }
 
-    private <T> boolean containsObject(List<T> list, T object)
-    {
-        for (T iterator : list)
-        {
-            if (object.equals(iterator))
-                return true;
-        }
-
-        return false;
-    }
-
     private <T> boolean checkCollectionSubsetOfAnother(List<T> collection_1, List<T> collection_2)
     {
         for (T obj : collection_1)
         {
-            if (!containsObject(collection_2, obj))
+            if (!collection_2.contains(obj))
             {
                 return false;
             }
@@ -74,11 +65,6 @@ public class Book extends Section {
     {
         return collection_1.size() == collection_2.size() && checkCollectionSubsetOfAnother(collection_1, collection_2)
                 && checkCollectionSubsetOfAnother(collection_2, collection_1);
-    }
-
-    public void print()
-    {
-        System.out.print(this);
     }
 
     public List<Author> getAuthors()
@@ -105,25 +91,10 @@ public class Book extends Section {
     }
 
     @Override
-    public String toString()
-    {
-        StringBuilder content = new StringBuilder();
-
-        content.append("models.Book: " + title_ + "\n\n");
-
-        content.append("Authors:\n");
-        for (Author author : authors_)
-        {
-            content.append("Author: " + author.toString() + '\n');
-        }
-
-        content.append('\n');
-
-        for (Element element : content_)
-        {
-            content.append(element.toString() + '\n');
-        }
-
-        return content.toString();
+    public void accept(Visitor visitor) {
+        visitor.visitSection(this);
     }
+
+    @Override
+    public void accept(BookStatistics bookStatistics) { bookStatistics.visitBook(this); }
 }
