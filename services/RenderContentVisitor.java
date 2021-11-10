@@ -3,10 +3,10 @@ package services;
 import models.*;
 
 import java.util.*;
-public class RenderContentVisitor implements Visitor {
+public class RenderContentVisitor implements Visitor<Void> {
 
     @Override
-    public void visitBook(Book book) {
+    public Void visitBook(Book book) {
         System.out.print("models.Book: " + book.getTitle() + "\n\n");
 
         System.out.print("Authors:\n");
@@ -22,10 +22,12 @@ public class RenderContentVisitor implements Visitor {
         {
             System.out.print(element.toString() + '\n');
         }
+
+        return null;
     }
 
     @Override
-    public void visitSection(Section section) {
+    public Void visitSection(Section section) {
         System.out.println("Title: " + section.getTitle());
 
         for (Element element : section.getContent())
@@ -65,36 +67,48 @@ public class RenderContentVisitor implements Visitor {
 
             System.out.println();
         }
+
+        return null;
     }
 
     @Override
-    public void visitTableOfContents(TableOfContents tableOfContents) {
+    public Void visitTableOfContents(TableOfContents tableOfContents) {
         System.out.print(tableOfContents.getTitle());
+
+        return null;
     }
 
     @Override
-    public void visitParagraph(Paragraph paragraph) {
+    public Void visitParagraph(Paragraph paragraph) {
         System.out.print((new AlignmentStrategyFactory ()).create(paragraph.getAlignStrategy())
                 .render("Paragraph: " + paragraph.getText(), new Context(50)));
+
+        return null;
     }
 
     @Override
-    public void visitImageProxy(ImageProxy imageProxy) {
+    public Void visitImageProxy(ImageProxy imageProxy) {
         if (imageProxy.getRealImage() == null)
         {
             imageProxy.setRealImage(new Image(imageProxy.getUrl()));
         }
 
         visitImage(imageProxy.getRealImage());
+
+        return null;
     }
 
     @Override
-    public void visitImage(Image image) {
-       System.out.print("Image with name: " + image.getUrl());
+    public Void visitImage(Image image) {
+        System.out.print("Image with name: " + image.getUrl());
+
+        return null;
     }
 
     @Override
-    public void visitTable(Table table) {
+    public Void visitTable(Table table) {
         System.out.print(table.getTitle());
+
+        return null;
     }
 }

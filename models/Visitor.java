@@ -1,11 +1,11 @@
 package models;
 
-public interface Visitor {
-    void visitBook(Book book);
-    void visitSection(Section section) ;
-    void visitTableOfContents(TableOfContents tableOfContents);
-    void visitParagraph(Paragraph paragraph);
-    void visitImageProxy(ImageProxy imageProxy);
-    void visitImage(Image image);
-    void visitTable(Table table);
+public interface Visitor<T> {
+    T visitBook(Book book);
+    T visitSection(Section section) ;
+    T visitTableOfContents(TableOfContents tableOfContents);
+    T visitParagraph(Paragraph paragraph);
+    T visitImageProxy(ImageProxy imageProxy);
+    T visitImage(Image image);
+    T visitTable(Table table);
 }

@@ -20,12 +20,12 @@ public class BookStatistics implements Visitor {
     }
 
     @Override
-    public void visitBook(Book book) {
+    public Void visitBook(Book book) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void visitSection(Section section) {
+    public Void visitSection(Section section) {
         numberOfImages_ = numberOfTables_ = numberOfParagraphs_ = 0;
 
         for (Element element : section.getContent())
@@ -47,30 +47,32 @@ public class BookStatistics implements Visitor {
                 ((Section)element).accept(this);
             }
         }
+
+        return null;
     }
 
     @Override
-    public void visitTableOfContents(TableOfContents tableOfContents) {
+    public Void visitTableOfContents(TableOfContents tableOfContents) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void visitParagraph(Paragraph paragraph) {
+    public Void visitParagraph(Paragraph paragraph) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void visitImageProxy(ImageProxy imageProxy) {
+    public Void visitImageProxy(ImageProxy imageProxy) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void visitImage(Image image) {
+    public Void visitImage(Image image) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void visitTable(Table table) {
+    public Void visitTable(Table table) {
         throw new UnsupportedOperationException();
     }
 }
